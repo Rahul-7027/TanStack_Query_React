@@ -3,13 +3,18 @@ import { fetchPost } from "../API/api";
 
 const OldMethod = () => {
     const [data, setData] = useState([]);
+    const [isLoading, setLoading] = useState(false)
+    const [isError, setError] = useState(false)
 
     const getData = async () => {
         try {
             const newData = await fetchPost();
             newData.status === 200 ? setData(newData.data) : setData([])
+            setLoading(false)
         } catch (error) {
             console.error("Error fetching data:", error);
+            setLoading(true)
+            setError(true)
         }
     };
 
@@ -19,6 +24,9 @@ const OldMethod = () => {
         getData();
     }, []);
 
+
+    if (isLoading) { return <p>Loading ......</p> }
+    if (isError) { return <p>Something went wrong .....</p> }
     return (
         <div>
 
