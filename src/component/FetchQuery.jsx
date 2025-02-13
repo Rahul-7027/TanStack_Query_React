@@ -18,7 +18,7 @@ const FetchQuery = () => {
     const { data, error, isLoading } = useQuery({
         queryKey: ["posts"], // useState
         queryFn: getData,    // useEffect 
-
+        gcTime: 1000
     });
 
     if (isLoading) return <p>Loading .....</p>

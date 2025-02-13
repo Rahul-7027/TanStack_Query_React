@@ -7,6 +7,7 @@ import OldMethod from "./component/OldMethod";
 import Contact from "./component/Contact"
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import FetchQuery from "./component/FetchQuery";
+import { TanStackRouterDevtools } from '@tanstack/router-devtools'
 
 function App() {
 
@@ -46,6 +47,7 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router}>
         <ReactQueryDevtools initialIsOpen={true} />
+        <TanStackRouterDevtools initialIsOpen={false} />
         </RouterProvider>
       </QueryClientProvider>
     </>
