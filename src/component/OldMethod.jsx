@@ -18,7 +18,6 @@ const OldMethod = () => {
         }
     };
 
-    console.log(11111, data)
 
     useEffect(() => {
         getData();

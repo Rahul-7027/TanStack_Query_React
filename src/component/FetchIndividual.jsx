@@ -13,7 +13,7 @@ const FetchIndividual = () => {
         enabled: !!id, // Prevents query from running if `id` is undefined
     });
 
-    console.log("Fetched Data:", data);
+
 
     return (
         <div>
