@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { fetchPost } from '../API/api';
+import { fetchPost, updatePost } from '../API/api';
 import { keepPreviousData, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { NavLink, useParams } from 'react-router-dom';
 import { deletePost } from '../API/api';
@@ -14,7 +14,7 @@ const FetchQuery = () => {
         onSuccess: (id) => {
             console.log("Post deleted successfully!");
 
-            queryClient.setQueryData(["posts", pageNumber], (currElem = []) => {
+            queryClient.setQueryData(["posts", pageNumber], (currElem) => {
                 return currElem.filter((post) => post.id !== id); // ✅ Correct filtering
             });
         },
@@ -22,6 +22,22 @@ const FetchQuery = () => {
             console.error("Failed to delete post:", error);
         }
     });
+    const updateMutation = useMutation({
+        mutationFn: (id) => updatePost(id),
+        onSuccess: (apiData, id) => {  // ✅ Correct order of parameters
+            console.log("Post updated successfully!", apiData);
+    
+            queryClient.setQueryData(["posts", pageNumber], (postData = []) => {
+                return postData.map((post) => 
+                    post.id === id ? { ...post, ...apiData } : post  // ✅ Update the post with new data
+                );
+            });
+        },
+        onError: (error) => {
+            console.error("Failed to update post:", error);
+        }
+    });
+    
 
 
     const getData = async (pageNumber) => {
@@ -59,6 +75,8 @@ const FetchQuery = () => {
                             </NavLink>
                             <button onClick={() => deleteMutation.mutate(element.id)} disabled={deleteMutation.isLoading}>
                                 {deleteMutation.isLoading ? "Deleting..." : "Delete"}
+                            </button>
+                            <button onClick={() => updateMutation.mutate(element.id)} >Update
                             </button>
 
                         </li>

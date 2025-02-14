@@ -11,7 +11,7 @@ export const fetchPost = async (pageNumber) => {
 export const individualPost = async (id) => {
     try {
         const newData = await api.get(`/posts/${id}`);
-       
+
         return newData.status === 200 ? newData.data : null;
     } catch (error) {
         console.error("Error fetching post:", error?.response || error.message);
@@ -19,12 +19,20 @@ export const individualPost = async (id) => {
     }
 };
 
-export const deletePost = async (id) => {
+export const deletePost = (id) => {
     try {
-        const newData = await api.delete(`/posts/${id}`);
+        return api.delete(`/posts/${id}`);
     } catch (error) {
         console.error("Error fetching post:", error?.response || error.message);
         return { error: "Failed to fetch post" };
     }
 };
 
+export const updatePost = (id) => {
+    try {
+        return api.patch(`/posts/${id}`, { title: "I am updated" });
+    } catch (error) {
+        console.error("Error fetching post:", error?.response || error.message);
+        return { error: "Failed to fetch post" };
+    }
+};
