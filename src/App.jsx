@@ -8,6 +8,7 @@ import Contact from "./component/Contact"
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import FetchQuery from "./component/FetchQuery";
 import { TanStackRouterDevtools } from '@tanstack/router-devtools'
+import FetchIndividual from "./component/FetchIndividual"
 
 function App() {
 
@@ -37,6 +38,10 @@ function App() {
         {
           path: "/new",
           element: <FetchQuery />
+        },
+        {
+          path: "/new/:id",
+          element: <FetchIndividual/>
         },
 
       ]
