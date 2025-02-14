@@ -27,7 +27,7 @@ const FetchIndividual = () => {
                     <li><strong>Id:</strong> {data?.id}</li>
                     <li><strong>Title:</strong> {data?.title}</li>
                     <li><strong>Body:</strong> {data?.body}</li>
-                    
+
                     <NavLink to="/"><button>Go back</button></NavLink>
                 </ul>
             )}
