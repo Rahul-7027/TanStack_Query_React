@@ -36,3 +36,17 @@ export const updatePost = (id) => {
         return { error: "Failed to fetch post" };
     }
 };
+
+
+// indincate scrolling 
+export const infiniteData = async({ pageParam = 1 }) => {
+    try {
+        const response = await axios.get(
+            `https://api.github.com/users?per_page=10&page=${pageParam}`
+        );
+        return response.data
+    } catch (error) {
+        console.log(error)
+    }
+
+}

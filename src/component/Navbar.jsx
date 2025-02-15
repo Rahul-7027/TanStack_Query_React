@@ -12,6 +12,7 @@ const Navbar = () => {
                     <li><NavLink to="/contact"> Contact</NavLink></li>
                     <li><NavLink to="/old"> FetchOld</NavLink></li>
                     <li><NavLink to="/new"> FetchNew</NavLink></li>
+                    <li><NavLink to="/infinite"> Infinate Scroll</NavLink></li>
                 </ul>
             </nav>
         </div>
